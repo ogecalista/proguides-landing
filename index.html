@@ -1,1 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TikTok Blueprint — ProGuides</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --lavender-light: rgb(243,231,255);
+    --lavender-mid: rgb(238,230,254);
+    --lavender-soft: rgb(247,244,251);
+    --purple-dark: rgb(52,26,73);
+    --pink-light: #fce4f0;
+    --pink-mid: #f7b8d8;
+    --pink-accent: #e8528a;
+    --white: #ffffff;
+    --text-dark: #1a0a2e;
+    --text-mid: #4a2060;
+    --text-muted: #8a6fa0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, var(--lavender-light) 0%, var(--pink-light) 50%, var(--lavender-mid) 100%);
+    padding: 2rem 1.5rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: var(--pink-mid);
+    opacity: 0.3;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 40px; left: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: var(--lavender-mid);
+    opacity: 0.4;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--purple-dark);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--purple-dark);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 span {
+    color: var(--pink-accent);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--text-mid);
+    max-width: 340px;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-img-wrap {
+    position: relative;
+    z-index: 1;
+    margin-top: 1rem;
+  }
+
+  .hero-img-wrap img {
+    width: 80%;
+    max-width: 280px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 16px 16px 0 0;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* TIMER */
+  .timer-bar {
+    background: var(--purple-dark);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    text-align: center;
+  }
+
+  .timer-label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+  }
+
+  .timer-digits {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .timer-block {
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 8px 14px;
+    min-width: 58px;
+    text-align: center;
+  }
+
+  .timer-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .timer-unit {
+    font-size: 10px;
+    opacity: 0.7;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .timer-sep {
+    font-size: 1.5rem;
+    font-weight: 700;
+    opacity: 0.6;
+    margin-bottom: 6px;
+  }
+
+  /* SCARCITY */
+  .scarcity {
+    background: var(--pink-light);
+    border-left: 4px solid var(--pink-accent);
+    margin: 1.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .scarcity strong {
+    color: var(--pink-accent);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .scarcity p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+  }
+
+  .spots-bar {
+    background: #e8d0f5;
+    border-radius: 20px;
+    height: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+
+  .spots-fill {
+    background: linear-gradient(90deg, var(--pink-accent), var(--purple-dark));
+    width: 62%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .spots-text {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* SECTION */
+  section {
+    padding: 2rem 1.5rem;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pink-accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--purple-dark);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  /* PAIN */
+  .pain-section {
+    background: var(--lavender-soft);
+    border-radius: 20px;
+    margin: 0 1rem;
+    padding: 1.5rem;
+  }
+
+  .pain-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-mid);
+  }
+
+  .pain-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--pink-accent);
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* PRODUCT */
+  .product-card {
+    background: var(--purple-dark);
+    border-radius: 20px;
+    padding: 1.5rem;
+    color: #fff;
+    margin: 0 1rem;
+  }
+
+  .product-cover {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    object-fit: cover;
+  }
+
+  .product-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .bullet-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .check {
+    color: var(--pink-mid);
+    font-size: 1rem;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  /* BONUSES */
+  .bonus-card {
+    background: var(--lavender-light);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border: 1.5px solid var(--lavender-mid);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bonus-card::before {
+    content: 'FREE BONUS';
+    position: absolute;
+    top: 12px; right: -10px;
+    background: var(--pink-accent);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 18px;
+    transform: rotate(0deg);
+    border-radius: 4px;
+  }
+
+  .bonus-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--purple-dark);
+    margin-bottom: 0.4rem;
+    padding-right: 70px;
+  }
+
+  .bonus-desc {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+  }
+
+  .bonus-value {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .bonus-value s {
+    color: var(--text-muted);
+  }
+
+  .bonus-value strong {
+    color: var(--pink-accent);
+  }
+
+  /* PERCEIVED VALUE */
+  .value-box {
+    background: linear-gradient(135deg, var(--lavender-mid), var(--pink-light));
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    margin: 0 1rem;
+  }
+
+  .value-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(52,26,73,0.1);
+    font-size: 0.9rem;
+    color: var(--text-mid);
+  }
+
+  .value-row:last-of-type { border-bottom: none; }
+
+  .value-row .price { font-weight: 600; color: var(--purple-dark); }
+
+  .value-total {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+  }
+
+  .value-total .big {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--purple-dark);
+    display: block;
+  }
+
+  .value-total .actual {
+    font-size: 1.4rem;
+    color: var(--pink-accent);
+    font-weight: 700;
+  }
+
+  /* DFY */
+  .dfy-card {
+    background: var(--purple-dark);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin: 0 1rem;
+    color: #fff;
+  }
+
+  .dfy-card .section-label { color: var(--pink-mid); }
+
+  .dfy-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .dfy-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .dfy-price {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .dfy-price strong {
+    font-size: 1.5rem;
+    color: var(--pink-mid);
+    display: block;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(160deg, var(--lavender-light), var(--pink-light));
+  }
+
+  .price-display {
+    margin-bottom: 1.25rem;
+  }
+
+  .price-was {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+
+  .price-now {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--purple-dark);
+    line-height: 1;
+    display: block;
+    margin: 0.25rem 0;
+  }
+
+  .price-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .btn-main {
+    display: block;
+    width: 100%;
+    background: var(--purple-dark);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-radius: 14px;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .btn-main:active { opacity: 0.85; }
+
+  .btn-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: #25D366;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.9rem 1.5rem;
+    border-radius: 14px;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+  }
+
+  .wa-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .guarantee {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--lavender-mid);
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lavender-mid), transparent);
+    margin: 0.5rem 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">⚡ Limited Offer — 50 Spots Only</div>
+  <h1>Stop Posting.<br>Start <span>Earning.</span></h1>
+  <p class="hero-sub">The exact blueprint Nigerian TikTokers are using to build real income from their phones — no experience, no big following needed.</p>
+  <div class="hero-img-wrap">
+    <img src="my_personal_photo.jpeg" alt="Oge — ProGuides Founder" />
+  </div>
+</div>
+
+<!-- TIMER -->
+<div class="timer-bar">
+  <div class="timer-label">⏰ This price expires in</div>
+  <div class="timer-digits">
+    <div class="timer-block">
+      <div class="timer-num" id="hours">23</div>
+      <div class="timer-unit">hrs</div>
+    </div>
+    <div class="timer-sep">:</div>
+    <div class="timer-block">
+      <div class="timer-num" id="mins">59</div>
+      <div class="timer-unit">min</div>
+    </div>
+    <div class="timer-sep">:</div>
+    <div class="timer-block">
+      <div class="timer-num" id="secs">59</div>
+      <div class="timer-unit">sec</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCARCITY -->
+<div class="scarcity">
+  <strong>🔥 31 of 50 spots taken</strong>
+  <p>Only 19 copies left at this price. Once they're gone, the price goes up.</p>
+  <div class="spots-bar"><div class="spots-fill"></div></div>
+  <div class="spots-text">62% claimed — 19 spots remaining</div>
+</div>
+
+<!-- PAIN -->
+<section>
+  <div class="section-label">Sound familiar?</div>
+  <div class="section-title">You're working hard but TikTok isn't paying you.</div>
+  <div class="pain-section">
+    <div class="pain-item"><div class="pain-icon">✗</div><div>Posting every day and still making zero naira</div></div>
+    <div class="pain-item"><div class="pain-icon">✗</div><div>Getting views but no one is buying anything</div></div>
+    <div class="pain-item"><div class="pain-icon">✗</div><div>Confused about how to set up payments and receive money in Nigeria</div></div>
+    <div class="pain-item"><div class="pain-icon">✗</div><div>Watching other Nigerian creators make money while you're stuck</div></div>
+    <div class="pain-item"><div class="pain-icon">✗</div><div>Trying random tips from YouTube that never actually work</div></div>
+  </div>
+  <p style="margin-top:1rem;font-size:0.95rem;color:var(--text-mid);"><strong style="color:var(--purple-dark)">It's not your fault.</strong> Nobody built a complete system specifically for Nigerian creators — until now.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCT -->
+<section style="padding-top:1rem;">
+  <div class="section-label">The Blueprint</div>
+  <div class="section-title">From Zero to Your First ₦100,000 on TikTok</div>
+  <div class="product-card">
+    <img src="ticktok_cover_pic.jpeg" alt="TikTok Money Blueprint" class="product-cover" />
+    <h3>TikTok Money Blueprint — 2026 Edition</h3>
+    <div class="bullet-item"><span class="check">✓</span><span>How the TikTok algorithm really works — and how to make it push your videos to buyers</span></div>
+    <div class="bullet-item"><span class="check">✓</span><span>How to create and sell a digital product from your phone in Nigeria</span></div>
+    <div class="bullet-item"><span class="check">✓</span><span>How to get a dollar card and run TikTok ads that bring real paying customers</span></div>
+    <div class="bullet-item"><span class="check">✓</span><span>How to set up Selar, receive payments, and withdraw your money hassle-free</span></div>
+    <div class="bullet-item"><span class="check">✓</span><span>The exact content formula that turns cold strangers into buyers</span></div>
+    <div class="bullet-item"><span class="check">✓</span><span>How to install TikTok Pixel and retarget warm leads for higher conversions</span></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BONUSES -->
+<section>
+  <div class="section-label">Free Bonuses Included</div>
+  <div class="section-title">You also get these — free.</div>
+
+  <div class="bonus-card">
+    <div class="bonus-title">30-Day TikTok Content Calendar</div>
+    <div class="bonus-desc">30 days of ready-to-film videos — every hook, caption, hashtag, and CTA written for you. Just show up and post.</div>
+    <div class="bonus-value">Value: <s>₦15,000</s> → <strong>FREE</strong></div>
+  </div>
+
+  <div class="bonus-card">
+    <div class="bonus-title">High-Converting TikTok Sales Funnel</div>
+    <div class="bonus-desc">The complete 5-stage system that takes a cold stranger from their For You Page to paying you ₦5,000 — with ready-made scripts for every stage.</div>
+    <div class="bonus-value">Value: <s>₦20,000</s> → <strong>FREE</strong></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PERCEIVED VALUE -->
+<section style="padding:1.5rem 1rem;">
+  <div class="section-label">What you're getting</div>
+  <div class="section-title" style="padding:0 0.5rem;">Total value — broken down</div>
+  <div class="value-box">
+    <div class="value-row"><span>TikTok Money Blueprint</span><span class="price">₦35,000</span></div>
+    <div class="value-row"><span>30-Day Content Calendar</span><span class="price">₦15,000</span></div>
+    <div class="value-row"><span>High-Converting Sales Funnel</span><span class="price">₦20,000</span></div>
+    <div class="value-total">
+      Total value: <s>₦70,000</s><br>
+      <span class="big">Today only:</span>
+      <span class="actual">₦5,000</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DFY -->
+<section style="padding:1.5rem 0;">
+  <div style="padding:0 1.5rem;margin-bottom:1rem;">
+    <div class="section-label">Want it done for you?</div>
+    <div class="section-title">Complete TikTok Money Setup — Done For You</div>
+  </div>
+  <div class="dfy-card">
+    <div class="section-label">Premium Service</div>
+    <h3>I Set Everything Up For You</h3>
+    <div class="dfy-item"><span class="check">✓</span><span>Your Selar store fully set up and ready to receive payments</span></div>
+    <div class="dfy-item"><span class="check">✓</span><span>Your TikTok profile optimised for sales and discovery</span></div>
+    <div class="dfy-item"><span class="check">✓</span><span>30-day content calendar customised for your specific niche</span></div>
+    <div class="dfy-item"><span class="check">✓</span><span>Your complete sales funnel mapped out and ready to convert</span></div>
+    <div class="dfy-item"><span class="check">✓</span><span>WhatsApp broadcast list set up to build your buyer community</span></div>
+    <div class="dfy-item"><span class="check">✓</span><span>Everything done — you just show up and post</span></div>
+    <div class="dfy-price">
+      Investment: <strong>₦50,000</strong>
+      <span style="font-size:0.82rem;opacity:0.7;">WhatsApp me to book your slot — only 5 spots available per month</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="section-label">Real Results</div>
+  <div class="section-title">What people are saying</div>
+
+  <div style="background:var(--lavender-soft);border-radius:16px;padding:1.25rem;margin-bottom:1rem;border:1.5px solid var(--lavender-mid);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.75rem;">
+      <div style="width:38px;height:38px;border-radius:50%;background:var(--purple-dark);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">C</div>
+      <div>
+        <div style="font-weight:600;font-size:0.9rem;color:var(--purple-dark);">Chinny</div>
+        <div style="font-size:11px;color:var(--text-muted);">Verified Buyer ✓</div>
+      </div>
+      <div style="margin-left:auto;color:var(--pink-accent);font-size:14px;">★★★★★</div>
+    </div>
+    <p style="font-size:0.9rem;color:var(--text-mid);font-style:italic;">"This blueprint helped me so much. Now I can run my TikTok effectively and I can also fund my dollar account to run my TikTok ads. Thanks a lot coach."</p>
+    <img src="chinny.jpeg" alt="Chinny testimonial" style="width:100%;border-radius:10px;margin-top:0.75rem;opacity:0.85;" />
+  </div>
+
+  <div style="background:var(--lavender-soft);border-radius:16px;padding:1.25rem;margin-bottom:1rem;border:1.5px solid var(--lavender-mid);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.75rem;">
+      <div style="width:38px;height:38px;border-radius:50%;background:var(--pink-accent);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">CW</div>
+      <div>
+        <div style="font-weight:600;font-size:0.9rem;color:var(--purple-dark);">Crown Wendy</div>
+        <div style="font-size:11px;color:var(--text-muted);">Verified Buyer ✓</div>
+      </div>
+      <div style="margin-left:auto;color:var(--pink-accent);font-size:14px;">★★★★★</div>
+    </div>
+    <p style="font-size:0.9rem;color:var(--text-mid);font-style:italic;">"The sales funnel guide alone is worth more than ₦5,000. I used it to structure my entire TikTok page and within one month I went from 200 followers to 4,800 followers and made <strong style="color:var(--purple-dark)">NGN 118,000</strong> selling my own digital product. If you are serious about making money online in Nigeria this blueprint is not optional. It is necessary."</p>
+    <img src="crown.jpeg" alt="Crown Wendy testimonial" style="width:100%;border-radius:10px;margin-top:0.75rem;opacity:0.85;" />
+  </div>
+
+  <div style="background:var(--lavender-soft);border-radius:16px;padding:1.25rem;margin-bottom:1rem;border:1.5px solid var(--lavender-mid);">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.75rem;">
+      <div style="width:38px;height:38px;border-radius:50%;background:var(--purple-dark);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">U</div>
+      <div>
+        <div style="font-weight:600;font-size:0.9rem;color:var(--purple-dark);">Ugoo</div>
+        <div style="font-size:11px;color:var(--text-muted);">Verified Buyer ✓</div>
+      </div>
+      <div style="margin-left:auto;color:var(--pink-accent);font-size:14px;">★★★★★</div>
+    </div>
+    <p style="font-size:0.9rem;color:var(--text-mid);font-style:italic;">"I had been on TikTok for 6 months posting randomly with nothing to show for it. After reading this blueprint I understood exactly why nothing was working. The TikTok SEO section opened my eyes completely. I followed the 30-day content calendar and by day 19 I had made <strong style="color:var(--purple-dark)">NGN 32,000</strong> in affiliate commissions. I have already recommended this to 4 of my friends. ProGuides is the real deal."</p>
+    <img src="ugoo.jpeg" alt="Ugoo testimonial" style="width:100%;border-radius:10px;margin-top:0.75rem;opacity:0.85;" />
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="section-label">Ready to start?</div>
+  <div class="section-title">Grab the Blueprint now</div>
+
+  <div class="price-display">
+    <span class="price-was">Total value: ₦70,000</span>
+    <span class="price-now">₦5,000</span>
+    <span class="price-note">One-time payment. Instant access. No subscription.</span>
+  </div>
+
+  <a href="https://selar.com/3005i63o1c" class="btn-main">👉 Get Instant Access — ₦5,000</a>
+
+  <a href="https://wa.me/2348107761250" class="btn-wa">
+    <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Chat on WhatsApp First
+  </a>
+
+  <p class="guarantee">🔒 Secure checkout via Selar · Instant digital delivery<br>Questions? WhatsApp +234 810 776 1250</p>
+</div>
+
+<footer>
+  <p>© 2026 ProGuides · proguides.world</p>
+  <p style="margin-top:4px;">Empowering You with Knowledge That Works</p>
+</footer>
+
+<script>
+  const endTime = Date.now() + 24 * 60 * 60 * 1000;
+  function updateTimer() {
+    const diff = Math.max(0, endTime - Date.now());
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('secs').textContent = String(s).padStart(2,'0');
+    if (diff > 0) setTimeout(updateTimer, 1000);
+  }
+  updateTimer();
+</script>
+</body>
+</html>
