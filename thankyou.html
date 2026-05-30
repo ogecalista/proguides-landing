@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — ProGuides</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1281043084192521');
+fbq('track', 'PageView');
+fbq('track', 'Purchase', {value: 5000, currency: 'NGN'});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1281043084192521&ev=Purchase&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple-dark: rgb(52,26,73);
+    --lavender-light: rgb(243,231,255);
+    --lavender-mid: rgb(238,230,254);
+    --pink-light: #fce4f0;
+    --pink-mid: #f7b8d8;
+    --pink-accent: #e8528a;
+    --white: #ffffff;
+    --text-dark: #1a0a2e;
+    --text-mid: #4a2060;
+    --text-muted: #8a6fa0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(160deg, var(--lavender-light) 0%, var(--pink-light) 50%, var(--lavender-mid) 100%);
+    min-height: 100vh;
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+
+  /* CONFETTI ANIMATION */
+  .confetti-wrap {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    animation: confettiFall linear forwards;
+    top: -20px;
+  }
+
+  @keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--purple-dark);
+    padding: 1rem 1.5rem;
+    text-align: center;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .logo span { color: var(--pink-mid); }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 2.5rem 1.5rem 1.5rem;
+    position: relative;
+  }
+
+  .success-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #d4edda;
+    color: #155724;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+    border: 1px solid #c3e6cb;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--purple-dark);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero h1 span { color: var(--pink-accent); }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--text-mid);
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  /* PHOTO + MESSAGE */
+  .personal-section {
+    margin: 1.5rem;
+    background: var(--purple-dark);
+    border-radius: 20px;
+    padding: 1.5rem;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .personal-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    border: 3px solid var(--pink-accent);
+  }
+
+  .personal-message {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .personal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--pink-mid);
+    margin-top: 0.25rem;
+  }
+
+  /* NEXT STEPS */
+  .steps-section {
+    margin: 0 1.5rem 1.5rem;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(52,26,73,0.08);
+  }
+
+  .steps-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--purple-dark);
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+    color: var(--text-mid);
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--pink-accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* BONUSES */
+  .bonuses-section {
+    margin: 0 1.5rem 1.5rem;
+    background: var(--lavender-light);
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 1.5px solid var(--lavender-mid);
+  }
+
+  .bonuses-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--purple-dark);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .bonus-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-mid);
+  }
+
+  .bonus-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  /* DFY UPSELL */
+  .dfy-section {
+    margin: 0 1.5rem 1.5rem;
+    background: var(--purple-dark);
+    border-radius: 20px;
+    padding: 1.5rem;
+    color: #fff;
+    text-align: center;
+  }
+
+  .dfy-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pink-mid);
+    margin-bottom: 0.5rem;
+  }
+
+  .dfy-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .dfy-desc {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .dfy-price {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 1rem;
+  }
+
+  .dfy-price strong {
+    font-size: 1.5rem;
+    color: var(--pink-mid);
+    display: block;
+  }
+
+  /* BUTTONS */
+  .btn-telegram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: #229ED9;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.9rem 1.5rem;
+    border-radius: 14px;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+  }
+
+  .btn-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: #25D366;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.9rem 1.5rem;
+    border-radius: 14px;
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+  }
+
+  .btn-dfy {
+    display: block;
+    width: 100%;
+    background: var(--pink-accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.9rem 1.5rem;
+    border-radius: 14px;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  /* SHARE */
+  .share-section {
+    margin: 0 1.5rem 1.5rem;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(52,26,73,0.08);
+  }
+
+  .share-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--purple-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .share-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .btn-share {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--lavender-mid);
+    color: var(--purple-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+  }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- CONFETTI -->
+<div class="confetti-wrap" id="confettiWrap"></div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">Pro<span>Guides</span></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="success-badge">✅ Payment Confirmed</div>
+  <h1>Welcome to the<br><span>Blueprint Family!</span></h1>
+  <p class="hero-sub">You just made one of the best decisions for your TikTok journey. Check your email for your download link.</p>
+</div>
+
+<!-- PERSONAL MESSAGE -->
+<div class="personal-section">
+  <img src="my_personal_photo.jpeg" alt="Oge — ProGuides" class="personal-photo" />
+  <div>
+    <p class="personal-message">"I am genuinely proud of you for taking this step. Most people keep scrolling and doing nothing. You chose differently. Now let's make sure you get results. Read the blueprint, follow the 30-day calendar, and message me directly if you ever get stuck. I am rooting for you."</p>
+    <div class="personal-name">— Oge, Founder of ProGuides</div>
+  </div>
+</div>
+
+<!-- NEXT STEPS -->
+<div class="steps-section">
+  <div class="steps-title">What Happens Next</div>
+  <div class="step-item">
+    <div class="step-num">1</div>
+    <div><strong>Check your email</strong> — your Blueprint download link has been sent to the email you used at checkout. Check your spam folder if you don't see it.</div>
+  </div>
+  <div class="step-item">
+    <div class="step-num">2</div>
+    <div><strong>Download your bonuses</strong> — your 30-Day Content Calendar and Sales Funnel are included in the same email.</div>
+  </div>
+  <div class="step-item">
+    <div class="step-num">3</div>
+    <div><strong>Start with Chapter 1</strong> — don't skip ahead. The blueprint is designed to be followed in order for best results.</div>
+  </div>
+  <div class="step-item">
+    <div class="step-num">4</div>
+    <div><strong>Didn't receive your email?</strong> Send a message to <strong>marycyriacus460@gmail.com</strong> or WhatsApp +234 810 776 1250 and we'll sort it immediately.</div>
+  </div>
+</div>
+
+<!-- BONUSES REMINDER -->
+<div class="bonuses-section">
+  <div class="bonuses-title">🎁 Everything You Just Got</div>
+  <div class="bonus-item"><span class="bonus-icon">📘</span><div><strong>From Zero to $10K — TikTok Money Blueprint</strong><br><span style="font-size:0.82rem;color:var(--text-muted);">Your complete step-by-step system</span></div></div>
+  <div class="bonus-item"><span class="bonus-icon">📅</span><div><strong>30-Day TikTok Content Calendar</strong><br><span style="font-size:0.82rem;color:var(--text-muted);">Every hook, caption, and CTA written for you</span></div></div>
+  <div class="bonus-item"><span class="bonus-icon">🔁</span><div><strong>High-Converting TikTok Sales Funnel</strong><br><span style="font-size:0.82rem;color:var(--text-muted);">5-stage system with ready-made scripts</span></div></div>
+
+  <div style="margin-top:1.25rem;">
+    <a href="https://t.me/proguidesSignals" class="btn-telegram">
+      📣 Join Our Telegram Community
+    </a>
+    <a href="https://wa.me/2348107761250" class="btn-wa">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp Me Directly
+    </a>
+  </div>
+</div>
+
+<!-- DFY UPSELL -->
+<div class="dfy-section">
+  <div class="dfy-label">Want faster results?</div>
+  <div class="dfy-title">Let Me Set Everything Up For You</div>
+  <p class="dfy-desc">You just got the blueprint. But if you want me to personally set up your Selar store, optimise your TikTok profile, build your content calendar, and map out your full sales funnel — I'll do it all for you so you just show up and post.</p>
+  <div class="dfy-price">Done For You Service<strong>₦50,000</strong></div>
+  <a href="https://wa.me/2348107761250?text=Hi%20Oge%2C%20I%20just%20bought%20the%20Blueprint%20and%20I%20want%20the%20Done%20For%20You%20setup" class="btn-dfy">Yes! Set It All Up For Me →</a>
+</div>
+
+<!-- SHARE -->
+<div class="share-section">
+  <div class="share-title">Know Someone Who Needs This?</div>
+  <p class="share-desc">Share the blueprint with a friend who's been struggling on TikTok. You might change their life.</p>
+  <button class="btn-share" onclick="shareBlueprint()">
+    🔗 Share with a Friend
+  </button>
+</div>
+
+<footer>
+  <p>© 2026 ProGuides · proguides.world</p>
+  <p style="margin-top:4px;">Empowering You with Knowledge That Works</p>
+</footer>
+
+<script>
+  // CONFETTI
+  function createConfetti() {
+    const wrap = document.getElementById('confettiWrap');
+    const colors = ['#e8528a', '#f7b8d8', 'rgb(52,26,73)', '#fce4f0', '#a855f7', '#fbbf24'];
+    for (let i = 0; i < 80; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.width = (Math.random() * 8 + 6) + 'px';
+      piece.style.height = (Math.random() * 8 + 6) + 'px';
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      piece.style.animationDelay = (Math.random() * 2) + 's';
+      wrap.appendChild(piece);
+    }
+    setTimeout(() => wrap.innerHTML = '', 5000);
+  }
+  createConfetti();
+
+  // SHARE
+  function shareBlueprint() {
+    const text = "I just grabbed the TikTok Money Blueprint from ProGuides and it's 🔥 If you've been struggling to make money on TikTok in Nigeria — this is for you. Get it here: https://selar.com/3005i63o1c";
+    if (navigator.share) {
+      navigator.share({ text });
+    } else {
+      navigator.clipboard.writeText(text).then(() => alert('Message copied! Paste it anywhere to share.'));
+    }
+  }
+</script>
+</body>
+</html>
